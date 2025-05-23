@@ -17,3 +17,7 @@ function perintDayOfWeek(num: number) : void {
 perintDayOfWeek(1);
 perintDayOfWeek(8);
 
+function formatPerson(personData:[string, number]):string {
+    return `Hi, I am ${personData[0]} and am ${personData[1]} years old.`;
+}
+
