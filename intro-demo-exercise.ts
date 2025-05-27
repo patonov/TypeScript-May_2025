@@ -21,3 +21,38 @@ function formatPerson(personData:[string, number]):string {
     return `Hi, I am ${personData[0]} and am ${personData[1]} years old.`;
 }
 
+function convertArrays(inputArr: string[]) : [string, number] {
+    const text: string = inputArr.join('');
+    
+    return [
+        text,
+        text.length
+    ];
+} 
+
+function summarizePerson(
+    id: number,
+    firstName: string, 
+    lastName: string, 
+    age: number, 
+    middleName?: string, 
+    hobbies?: string[],
+    workInfo?: [string, number]
+) :[number,  string, number, string, string] {
+    const name = middleName ? `${firstName} ${middleName} ${lastName}` : `${firstName} ${lastName}`;
+    const hobbiesStr = hobbies ? hobbies.join(', ') : '-';
+    const workStr = workInfo  ? `${workInfo[0]} -> ${workInfo[1]}` : '-';
+    
+        
+    return [
+        id,
+        name,
+        age,
+        hobbiesStr,
+        workStr
+    ];
+}
+
+
+
+
