@@ -53,6 +53,24 @@ function summarizePerson(
     ];
 }
 
+function reverseDayOfWeek(day: string) : void {
+    enum Days { "Monday" = 1, "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+    
+    console.log(Days[day as keyof typeof Days] || "error");
+}
+
+function unknownResponse(arg: unknown) : string {
+    if ('value' in (arg as any) && typeof (arg as any).value === 'string '){
+        return (arg as any).value;
+    }
+    return '-';
+}
+
+
+
+
+
+
 
 
 
