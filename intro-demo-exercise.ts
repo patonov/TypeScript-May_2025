@@ -66,6 +66,27 @@ function unknownResponse(arg: unknown) : string {
     return '-';
 }
 
+function isNonEmptyStringArray(arg: unknown) : arg is string[]{
+    return Array.isArray(arg) && arg.length >= 1 && arg.every(el => typeof el === 'string');
+}
+
+function friday13(arr: unknown[]) : void {
+    enum Months = {
+        January, February, March, April, May, June, July, August, September, October, November, Decembe
+    };
+    
+    for (const element of arr){   
+       if(element instances Date){
+           const monthDate = element.getDate();
+           const dayOfWeek = element.getDay();
+           const month = element.getMonth();
+
+           if (monthDate === 13 && dayOfWeek === 5){
+               console.log(`${monthDate}-${Months[month]}-${element.getFullYear()}`);
+           }
+       }
+    }
+}
 
 
 
