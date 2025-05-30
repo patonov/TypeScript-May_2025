@@ -88,7 +88,13 @@ function friday13(arr: unknown[]) : void {
     }
 }
 
-
+function printGreets(text: string | string[]) : void {
+    if (typeof text === 'string'){
+        console.log(text);
+    } else {
+        console.log(text.join(' '));
+    }
+}
 
 
 
