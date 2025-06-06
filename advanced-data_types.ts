@@ -95,3 +95,23 @@ class Dog implements Animal{
 
 const doggie = new Dog("murdjo", 4);
 doggie.makeSound("baw");
+
+function multily(param1?: number | string, param2?: number | string, param3?: number | string){
+    let num1 = param1 == undefined ? 1: Number(param1);
+    let num2 = param2 == undefined ? 1: Number(param2);
+    let num3 = param3 == undefined ? 1: Number(param3);
+    return num1 * num2 * num3;
+}
+
+console.log(multily(2, undefined, '4'));
+
+function operatorTask(
+    param: string | number | string[], 
+    operator: 'Index' | 'Length' | 'Add',
+    operand: number){
+        if(operator === 'Index' && typeof param != 'number'){
+            return param[operand];
+        }
+
+
+}
