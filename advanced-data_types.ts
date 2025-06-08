@@ -109,9 +109,35 @@ function operatorTask(
     param: string | number | string[], 
     operator: 'Index' | 'Length' | 'Add',
     operand: number){
-        if(operator === 'Index' && typeof param != 'number'){
-            return param[operand];
-        }
+    if(operator === 'Index' && typeof param !== 'number'){
+        return param[operand];
+    }
+    if(operator === 'Length' && typeof param !== 'number'){
+        return param.length % operand;
+    }
+    if(operator === 'Add' && !Array.isArray(param)){
+        return Number(param) + operand;
+    }
+}
 
+function createCar(
+    carBody: {material: string, state: string, partName: string, runDiagnostics: () => string},
+    tires: {airPressure: number, condition: string, partName: string, runDiagnostics: () => string},
+    engine: {horsepower: number, oilDeensity: number, partName: string, runDiagnostics: () => string}
+){
 
+}
+
+type httpCode = {code: 200 | 201 | 301, text: string};
+type httpCodeWithPrintChars = {code: 400 | 404 | 500, text: string, printChars?: number};
+
+function httpCodes(httpCode: httpCode | httpCodeWithPrintChars){
+    switch(httpCode.code){
+        case 200:
+        case 201:
+        case 301: console.log(httpCode.text); return;
+        case 400:
+        case 404:
+        case 500: console.log(httpCode.text.slice(0, httpCode.printChars)); return;
+    }
 }
