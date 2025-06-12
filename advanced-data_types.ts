@@ -179,3 +179,42 @@ visitFloor({ train() { }, number: 1, hallway: 'C' });
 visitFloor({ train() { }, number: 1, hallway: 'A' });
 visitFloor({ dine() { }, number: 2, hallway: 'A', pass: 'Guest' });
 visitFloor({ sleep() { }, number: 3, hallway: 'A' }); visitFloor({ dine() { }, number: 2, hallway: 'C' });
+
+let names = { fName: 'John', lName: 'Doe', age: 22, getPersonInfo() { return `${this.fName} ${this.lName}, age ${this.age}` } };
+
+let locationNow = { city:'Boston', street: 'Nowhere street', number: 13, postalCode: 51225, getAddressInfo() { return `${this.street} ${this.number}, ${this.city} ${this.postalCode}`} };
+
+type namesType = typeof names;
+type locationsType = typeof locationNow;
+
+function createCombinedFunction(names: namesType, location: locationsType){
+    return function(combinedObject: namesType & locationsType){
+        console.log(`Hello, ${combinedObject.getPersonInfo()} from ${combinedObject.getAddressInfo()}`);
+    }
+}
+
+let combinedFunction = createCombinedFunction(names, locationNow); 
+let combinedPerson = Object.assign({}, names, locationNow); 
+combinedFunction(combinedPerson);
+
+
+type User = {
+    id: number | string,
+    username: string,
+    passwordHash: string | string[],
+    status: 'Locked' | 'Unlocked' | 'Deleted',
+    email?: string
+}
+
+function isUser(user: unknown): user is User{
+    return user != undefined && typeof user === 'object' && 
+    'id' in user && ((typeof user.id === 'number' && user.id > 100) || (typeof user.id === 'string' && user.id.length === 14)) &&
+    'username' in user && (typeof user.username === 'string' && user.username.length >= 5 && user.username.length <= 10) &&
+    'passwordHash' in user && ((typeof user.passwordHash === 'string' && user.passwordHash.length === 20) ||
+    (Array.isArray(user.passwordHash) && user.passwordHash.every(x => typeof x === 'string' && x.length === 8))) &&
+    'status' in user && typeof user.status === 'string' && ['Locked', 'Unlocked', 'Deleted'].includes(user.status);
+}
+
+let newUser = { id: '1234-abcd-5678', username: 'testing', passwordHash: '123456-123456-123456', status: 'Unlocked' };
+
+console.log(isUser(newUser));
