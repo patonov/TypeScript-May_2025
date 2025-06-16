@@ -211,10 +211,66 @@ function isUser(user: unknown): user is User{
     'id' in user && ((typeof user.id === 'number' && user.id > 100) || (typeof user.id === 'string' && user.id.length === 14)) &&
     'username' in user && (typeof user.username === 'string' && user.username.length >= 5 && user.username.length <= 10) &&
     'passwordHash' in user && ((typeof user.passwordHash === 'string' && user.passwordHash.length === 20) ||
-    (Array.isArray(user.passwordHash) && user.passwordHash.every(x => typeof x === 'string' && x.length === 8))) &&
+    (Array.isArray(user.passwordHash) && user.passwordHash.length === 4 && user.passwordHash.every(x => typeof x === 'string' && x.length === 8))) &&
     'status' in user && typeof user.status === 'string' && ['Locked', 'Unlocked', 'Deleted'].includes(user.status);
 }
 
 let newUser = { id: '1234-abcd-5678', username: 'testing', passwordHash: '123456-123456-123456', status: 'Unlocked' };
 
 console.log(isUser(newUser));
+
+
+// function assignTask(
+//     user: { username: string, signupDate: Date },
+//     task: {
+//     status: 'Logged' | 'Started' | 'InProgress' | 'Done',
+//     title: string,
+//     daysRequired: number,
+//     assignedTo: {
+//     username: string,
+//     signupDate: Date
+//     } | undefined,
+//     changeStatus(newStatus: 'Logged' | 'Started' | 'InProgress' | 'Done'): void}) {
+//         if (task.assignedTo == undefined) {
+//         task.assignedTo = user;
+//         console.log(`User ${user.username} assigned to task '${task.title}'`);
+//         }
+// }
+
+
+type nUser = { username: string, signupDate: Date };
+type Task = {
+    status: 'Logged' | 'Started' | 'InProgress' | 'Done',
+    title: string,
+    daysRequired: number,
+    assignedTo: User | undefined,
+    changeStatus(newStatus: 'Logged' | 'Started' | 'InProgress' | 'Done'): void
+};
+
+function assignTask(user: nUser, task: Task){
+
+}
+
+
+let user = {
+username: 'Margaret',
+signupDate: new Date(2022, 1, 13),
+passwordHash: 'random'}
+
+let task1 = {
+status: <'Logged' | 'Started' | 'InProgress' | 'Done'> 'Logged',
+title: 'Need assistance',
+daysRequired: 1,
+assignedTo: undefined,
+changeStatus(newStatus: 'Logged' | 'Started' | 'InProgress' | 'Done') {this.status = newStatus; }}
+
+let task2 = {
+status: <'Logged' | 'Started' | 'InProgress' | 'Done'> 'Done',
+title: 'Test',
+daysRequired: 12,
+assignedTo: undefined, changeStatus(newStatus: 'Logged' | 'Started' | 'InProgress' | 'Done') { this.status = newStatus; }, 
+moreProps: 300, 
+evenMore: 'wow' } 
+
+assignTask(user, task1); 
+assignTask(user, task2);
