@@ -60,3 +60,39 @@ class Car extends Vehicle {
         return `${this.brand} ${this.model} is driving.`;
     }
 }
+
+interface IAnimal {
+    makeSound(): string;
+}
+
+class MyDog implements IAnimal {
+    makeSound(): string {
+        return 'Woof';
+    }
+}
+
+const myDog = new MyDog();
+console.log(myDog.makeSound());
+
+class Message {
+    public send(): string {
+        return 'I am sending what I am sending...';
+    }
+}
+
+class EmailMessage extends Message {
+    public override send(): string {
+        return 'I am sending an E-mail...';
+    }
+}
+
+class SmsMessage extends Message {
+    public override send(): string {
+        return 'I am sending a SMS message...';
+    }
+}
+
+
+
+
+
