@@ -92,6 +92,39 @@ class SmsMessage extends Message {
     }
 }
 
+class Employee {
+    public name: string;
+    protected position: string;
+    private salary: number;
+
+    constructor(name: string, position: string, salary: number){
+        this.name = name;
+        this.position = position;
+        this.salary = salary;
+    }
+
+    public getDetails(): string {
+        return `I am ${this.name} and I am working as ${this.position}.`;
+    }
+
+    public getSalary(): string {
+        return `I have a salary of ${this.salary}. `;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
