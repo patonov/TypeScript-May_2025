@@ -112,7 +112,24 @@ class Employee {
     }
 }
 
+class Counter {
+    public static count: number = 0;
+    public static increment(): void {
+        Counter.count++;
+    }
+    public static getCount(): number {
+        return Counter.count;
+    }
+}
 
+class Book {
+    public readonly title: string;
+    public readonly author: string;
+    constructor(title: string,  author: string){
+        this.title = title;
+        this.author = author;
+    }
+}
 
 
 
