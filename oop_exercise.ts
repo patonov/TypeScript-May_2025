@@ -131,7 +131,43 @@ class Book {
     }
 }
 
+abstract class Shape {
+    public color: string;
 
+    constructor(color: string) {
+        this.color = color;
+    }
+
+    public abstract getArea(): number;
+}
+
+class Circle extends Shape {
+    public radius: number;
+
+    constructor(radius: number, color: string){
+        super(color);
+        this.radius = radius;
+    }
+
+    public override getArea(): number {
+        return Math.PI * this.radius * this.radius;
+    }
+}
+
+class Rectangle extends Shape {
+    public sideA: number;
+    public sideB: number;
+
+    constructor(sideA: number, sideB: number, color: string){
+        super(color);
+        this.sideA = sideA;
+        this.sideB = sideB;
+    }
+
+    public override getArea(): number {
+        return this.sideA * sideB;
+    }
+}
 
 
 
