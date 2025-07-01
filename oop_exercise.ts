@@ -169,6 +169,23 @@ class Rectangle extends Shape {
     }
 }
 
+class GameUser {
+    private _username: string;
+
+    constructor(username: string){
+        this._username = username;
+    }
+
+    get username() {
+        return this._username;
+    }
+    set username(newUserName: string){
+        if (NewUserName. length < 3) {
+            throw new Error('Bat Mite, tui ne staa!')
+        }
+        this._username = newUserName;
+    }
+}
 
 
 
