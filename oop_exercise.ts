@@ -187,6 +187,31 @@ class GameUser {
     }
 }
 
+class Task {
+    public title: string;
+    public description: string;
+    public completed: boolean = false;
+    private createdBy: string;
+
+    constructor(title: string, description: string, createdBy: string){
+        this.title = title;
+        this.description = description;
+        this._createdBy = createdBy;
+    }
+
+    get createdBy(){
+        return this._createdBy;
+    }
+
+    public toggleStatus(): void {
+        this.completed = !this.completed;
+    }
+
+    public getDetails(): string {
+        return `${this.title} ${this.description} ${this.completed ? 'Completed' : 'Pending'}`;
+    }
+}
+
 
 
 
