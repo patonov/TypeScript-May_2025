@@ -68,3 +68,35 @@ class StorageBox<T> {
         }
     }
 }
+
+class ApiResponse<T, U> {
+    isSuccessful: boolean;
+    dataReturned: T | null;
+    errorThrown: U | null; 
+    
+    constructor(isSuccessful: boolean, dataReturned: T | null, errorThrown: U | null) {
+        this.isSuccessful = isSuccessful;
+        this.dataReturned = dataReturned;
+        this.errorThrown = errorThrown;
+    }
+
+    getResult(): T {
+        if(!this.isSuccessful || this.dataReturned === null){
+            throw new Error(String(this.errorThrown));
+        }
+
+        return this.dataReturned;
+    }
+}
+
+type Smoker = {
+    id: number;
+    name: string;
+    email: string;
+};
+
+type MakeAllPropertiesOptional<T> = {
+    [K in keyof T]?: T[K];
+}
+
+type PartialSmoker = MakeAllPropertiesOptional<Smoker>;
