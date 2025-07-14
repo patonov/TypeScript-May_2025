@@ -100,3 +100,25 @@ type MakeAllPropertiesOptional<T> = {
 }
 
 type PartialSmoker = MakeAllPropertiesOptional<Smoker>;
+
+type DarkEmployee = {
+    id: number;
+    name: string;
+    age: number;
+    city: string;
+    salary: number;
+};
+
+type Product = {
+    title: string;
+    price: number;
+    inStock: boolean;
+    rating: number;
+};
+
+type GetNumericTypes<T> = {
+    [K in keyof T]: T[K] extends number ? K : never;
+}[keyof T];
+
+type EmployeeNumericKeys = GetNumericTypes<DarkEmployee>;
+type ProductNumericKeys = GetNumericTypes<Product>;
