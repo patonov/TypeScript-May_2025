@@ -122,3 +122,29 @@ type GetNumericTypes<T> = {
 
 type EmployeeNumericKeys = GetNumericTypes<DarkEmployee>;
 type ProductNumericKeys = GetNumericTypes<Product>;
+
+function swap<T>(a: T[], aIndex: number, b: T[], bIndex: number): void {
+    const temp = a[aIndex];
+
+    a[aIndex] = b[bIndex];
+    b[bIndex] = temp;
+};
+
+type BaseCar = {
+    engine: {
+        horsepower: number;
+    };
+    tyres: {
+        model: string;
+        airPressure: number;
+    };
+    body: {
+        material: string;
+    };
+};
+
+class Mechanic<T extends BaseCar> {
+    technicalInspection(car: T): boolean { 
+        return true; 
+    }
+}
