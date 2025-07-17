@@ -147,4 +147,53 @@ class Mechanic<T extends BaseCar> {
     technicalInspection(car: T): boolean { 
         return true; 
     }
+};
+
+interface CountableSet<T> {
+    add(item:T): void;
+    remove(item: T): void;
+    contains(item: T): boolean;
+    getNumberOfCopies(item: T): number;
+};
+
+class CountedSet<T> implements CountableSet<T> {
+    private items: Map<T, number> = new Map();
+
+    add(item: T): void {
+        const currentCount = this.items.get(item);
+
+        if(currentCount){
+            this.items.set(item, currentCount + 1);
+        } else {
+            this.items.set(item, 1);
+        }
+    }
+
+    remove(item: T): void {
+        const currentCount = this.items.get(item);
+
+        if(currentCount) {
+            this.items.set(item, currentCount - 1);
+        }
+    }
+
+    contains(item: T): boolean {
+        const currentCount = this.items.get(item);
+
+        return currentCount !== undefined && currentCount > 0;
+    }
+
+    getNumberOfCopies(item: T): number {
+        return this.items.get(item) ?? 0;
+    }
+}
+
+type InputParamType<T> = T extends number ? number : string;
+
+function conditionalNumber<T>(value: InputParamType<T>): void {
+    if (typeof value === 'number'){
+        console.log(value.toFixed(2));
+    } else {
+        console.log(value);
+    }
 }
