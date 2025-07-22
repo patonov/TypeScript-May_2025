@@ -252,4 +252,30 @@ logger.log(LoggingLevel.Error, "Something went wrong.");
 logger.log(LoggingLevel.Warning, "Be careful with the type assertions.");
 logger.log(LoggingLevel.Debug, "Running the debugger.");
 console.log('-----------')
-console.log([...logger.cachedLogs.entries()].map(x => x[1].join('\n')).join('\n'))
+console.log([...logger.cachedLogs.entries()].map(x => x[1].join('\n')).join('\n'));
+
+type Choose<T, K extends keyof T> = {
+    [Key in K]: T[Key];
+}
+
+type test = {
+    name: string,
+    age: number,
+
+    test:() => string;
+}
+
+type extracted = Choose<test, 'name' | 'age'>;
+
+type anotherType = {
+    time: Date,
+    duration: number,
+
+    test: () => string,
+
+    val: 200 | 300,
+    user: { name: string, age: number } 
+} 
+
+type nestedUserAndTime = 'user' | 'time';
+type extracted2 = Choose<anotherType, nestedUserAndTime>;
