@@ -1,3 +1,5 @@
+//Decorator for a class
+
 function LogClass(constructor: Function){
     console.log(constructor);
 
@@ -5,6 +7,15 @@ function LogClass(constructor: Function){
     console.log(`Class ${constructor.name} created!`);
     console.log('-----------');
 }
+
+//Accessor decorator
+
+function LogAccessor(target: any, propertyName: string, descriptor: PropertyDescriptor){
+    console.log('-----------');
+    console.log(`${propertyName} was accessed!`);
+    console.log('-----------');
+}
+
 
 @LogClass
 class InternetUser {
@@ -19,6 +30,7 @@ class InternetUser {
         this.email = email;
     }
 
+    @LogAccessor
     get email(){
         return this._email;
     }
@@ -31,3 +43,11 @@ class InternetUser {
         return condensed ? `Person ${this.name}.` : `Person is ${this.name} is ${this.age} years old with email: ${this.email}.`;
     }
 }
+
+@LogClass
+class MiningEmployee {
+    name: string = 'Muncho';
+    salary: number = 970.00;
+}
+
+
