@@ -16,9 +16,25 @@ function LogAccessor(target: any, propertyName: string, descriptor: PropertyDesc
     console.log('-----------');
 }
 
+//Method decorator
+
+function LogMethod(target: any, methodName: string, descriptor: PropertyDescriptor){
+    console.log('-----------');
+    console.log(descriptor.value);
+    console.log('-----------');
+}
+
+//Property decorator
+
+function LogProperty(target: any, propertyName: string){
+    console.log('-----------');
+    console.log(`Prroperty ${propertyName} was created.`);
+    console.log('-----------');
+}
 
 @LogClass
 class InternetUser {
+    @LogProperty
     name: string;
     age: number;
 
@@ -39,6 +55,7 @@ class InternetUser {
         this._email = val;
     }
 
+    @LogMethod
     getInfo(condensed: boolean): string {
         return condensed ? `Person ${this.name}.` : `Person is ${this.name} is ${this.age} years old with email: ${this.email}.`;
     }
