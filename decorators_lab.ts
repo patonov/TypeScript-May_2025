@@ -32,6 +32,14 @@ function LogProperty(target: any, propertyName: string){
     console.log('-----------');
 }
 
+//Parameter decorator
+
+function LogParameter(target: any, methodName: string, parameterIndex: number) {
+    console.log('-----------');
+    console.log(`Parameter #${parameterIndex} for method ${methodName} has been created.`);
+    console.log('-----------');
+}
+
 @LogClass
 class InternetUser {
     @LogProperty
@@ -56,7 +64,7 @@ class InternetUser {
     }
 
     @LogMethod
-    getInfo(condensed: boolean): string {
+    getInfo(@LogParameter condensed: boolean): string {
         return condensed ? `Person ${this.name}.` : `Person is ${this.name} is ${this.age} years old with email: ${this.email}.`;
     }
 }
